@@ -29,10 +29,10 @@ public class particle  {
 		this.x += this.speedX;
 		this.y += this.speedY;
 		
-		if (this.x >= 1000 || this.x <= 31) {
+		if (this.x >= 969 || this.x <= 31) {
 			this.speedX *= -1;
 		}
-		if (this.y >= 1000 || this.y <= 31) {
+		if (this.y >= 969 || this.y <= 31) {
 			this.speedY *= -1;
 		}	
 		
@@ -40,7 +40,7 @@ public class particle  {
 	
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(Color.black);
+		g2d.setColor(Color.cyan);
 		g2d.fillOval(this.x - w/2, this.y - h/2, h, w);
 	}
 	
