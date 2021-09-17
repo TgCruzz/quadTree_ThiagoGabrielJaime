@@ -4,12 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class quadtree {
-
 	
-	int qx;
-	int qy;
-	int qh;
-	int qw;
 	int limit;
 	
 	rect size;
@@ -22,34 +17,35 @@ public class quadtree {
 	particle particle;
 	ArrayList<particle> particleCount = new ArrayList();
 	
-	boolean isDivided = false;
+	boolean isDivided;
 	
 	public quadtree (rect _size , int _limit) {
-		limit = _limit;
-		size = _size;
-		this.qx = size.x;
-		this.qy = size.y;
-		this.qh = size.h;
-		this.qw = size.w;
+		this.isDivided = false;
+		
+		this.limit = _limit;
+		this.size = _size;
+		
 	}
 	
 	
 	public void divide () {
 		
-		rect ne = new rect(this.qx + this.qw/2, this.qy, this.qw/2, this.qh/2);
-		northeast = new quadtree(ne, limit);
+		int qx = size.x;
+		int qy = size.y;
+		int qh = size.h;
+		int qw = size.w;
 		
-		rect nw = new rect(this.qx, this.qy, this.qw/2, this.qh/2);
-		northwest = new quadtree(nw, limit);
+		rect ne = new rect(qx + qw/2, qy, qw/2, qh/2);
+		rect nw = new rect(qx, qy, qw/2, qh/2);	
+		rect se = new rect(qx + qw/2, qy + qh/2, qw/2, qh/2);
+		rect sw = new rect(qx, qy + qh/2, qw/2, qh/2);
 		
-		rect se = new rect(this.qx + this.qw/2, this.qy + this.qh/2, this.qw/2, this.qh/2);
-		southeast = new quadtree(se, limit);
-		
-		rect sw = new rect(this.qx, this.qy + this.qy/2, this.qw/2, this.qh/2);
-		southwest = new quadtree(sw, limit);
+		this.northeast = new quadtree(ne, limit);
+		this.northwest = new quadtree(nw, limit);
+		this.southeast = new quadtree(se, limit);
+		this.southwest = new quadtree(sw, limit);
 		
 		this.isDivided = true;
-		
 	}
 	
 
@@ -65,23 +61,23 @@ public class quadtree {
 			if (!this.isDivided) {
 				this.divide();				
 			}			
-			northeast.addParticle(particle);
-			northwest.addParticle(particle);
-			southeast.addParticle(particle);
-			southwest.addParticle(particle);
+			this.northeast.addParticle(particle);
+			this.northwest.addParticle(particle);
+			this.southeast.addParticle(particle);
+			this.southwest.addParticle(particle);
 		}		
 	}
 	
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.black);
-		g2d.drawRect(this.qx, this.qy, this.qw, this.qh);
+		g2d.drawRect(this.size.x, this.size.y, this.size.w, this.size.h);
 
 		if(this.isDivided) {
-			northeast.draw(g);
-			northwest.draw(g);
-			southeast.draw(g);
-			southwest.draw(g);
+			this.northeast.draw(g);
+			this.northwest.draw(g);
+			this.southeast.draw(g);
+			this.southwest.draw(g);
 		}
 	}
 	

@@ -12,12 +12,11 @@ public class rect {
 		y = _y;
 		h = _h;
 		w = _w;
-
 	}
 	
 	public boolean locate (particle particle) {
-		return(particle.x > this.x - this.w && particle.x < this.x + this.w 
-			&& particle.y > this.y - this.h && particle.y < this.y + this.h);
+		return(particle.x > this.x && particle.x < this.x + this.w 
+			&& particle.y > this.y && particle.y < this.y + this.h);
 		
 	}
 	

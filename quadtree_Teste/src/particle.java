@@ -34,7 +34,7 @@ public class particle  {
 		}
 		if (this.y >= 969 || this.y <= 31) {
 			this.speedY *= -1;
-		}	
+		}				
 		
 	}
 	
