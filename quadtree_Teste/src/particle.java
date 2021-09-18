@@ -6,10 +6,11 @@ public class particle  {
 
 	Random random = new Random();
 	
+		screen screen;
 		int x;
 		int y;
-		int h = 6;
-		int w = 6;
+		int h = 4;
+		int w = 4;
 		int speedX;
 		int speedY;
 	
@@ -29,10 +30,10 @@ public class particle  {
 		this.x += this.speedX;
 		this.y += this.speedY;
 		
-		if (this.x >= 969 || this.x <= 31) {
+		if (this.x >= screen.screenSize || this.x <= screen.screenSize - screen.screenSize) {
 			this.speedX *= -1;
 		}
-		if (this.y >= 969 || this.y <= 31) {
+		if (this.y >= screen.screenSize || this.y <= screen.screenSize - screen.screenSize) {
 			this.speedY *= -1;
 		}				
 		

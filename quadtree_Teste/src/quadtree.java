@@ -15,6 +15,7 @@ public class quadtree {
 	quadtree southwest;
 	
 	particle particle;
+	
 	ArrayList<particle> particleCount = new ArrayList();
 	
 	boolean isDivided;
@@ -23,8 +24,7 @@ public class quadtree {
 		this.isDivided = false;
 		
 		this.limit = _limit;
-		this.size = _size;
-		
+		this.size = _size;	
 	}
 	
 	

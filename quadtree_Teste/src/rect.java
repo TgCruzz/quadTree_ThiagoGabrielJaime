@@ -15,8 +15,8 @@ public class rect {
 	}
 	
 	public boolean locate (particle particle) {
-		return(particle.x > this.x && particle.x < this.x + this.w 
-			&& particle.y > this.y && particle.y < this.y + this.h);
+		return(particle.x - particle.w/2 > this.x && particle.x - particle.w/2 < this.x + this.w 
+			&& particle.y - particle.h/2 > this.y && particle.y - particle.h/2 < this.y + this.h);
 		
 	}
 	
