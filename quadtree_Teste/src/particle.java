@@ -5,14 +5,14 @@ import java.awt.*;
 public class particle  {
 
 	Random random = new Random();
-	
-		screen screen;
+
 		int x;
 		int y;
 		int h = 4;
 		int w = 4;
 		int speedX;
 		int speedY;
+		int border;
 	
 	public particle (int _x, int _y) {
 		
@@ -25,17 +25,30 @@ public class particle  {
 		}
 	}
 	
-	public void Update () {
+	public void Update (int _border, particle particle) {
 		
+		border = _border;
 		this.x += this.speedX;
 		this.y += this.speedY;
 		
-		if (this.x >= screen.screenSize || this.x <= screen.screenSize - screen.screenSize) {
+		if (this.x >= border || this.x <= border - border) {
 			this.speedX *= -1;
 		}
-		if (this.y >= screen.screenSize || this.y <= screen.screenSize - screen.screenSize) {
+		if (this.y >= border || this.y <= border - border) {
 			this.speedY *= -1;
-		}				
+		}	
+		
+		if((this.x <= particle.x + particle.w && this.x + this.w >= particle.x + particle.w) ||
+		   (this.x + this.w >= particle.x && this.x + this.w <= particle.x + particle.w)) {
+			this.speedX *= -1;
+			particle.speedX *= -1;
+		}
+		
+		if((this.y <= particle.y + particle.h && this.y + this.h >= particle.y + particle.h) ||
+		   (this.y + this.h >= particle.x && this.y + this.h <= particle.y + particle.h)) {
+			this.speedY *= -1;
+			particle.speedY *= -1;
+		}
 		
 	}
 	
